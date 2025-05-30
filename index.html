@@ -1,1 +1,496 @@
-ddd
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>우리 반 학생들이 생성형 AI를 사용하는 이유</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <style>
+        /* Custom CSS for color palette and font */
+        :root {
+            --primary-blue: #2A62B6;
+            --secondary-teal: #4ECDC4;
+            --accent-grey: #A9A9A9;
+            --supporting-light-blue: #E0F2FE;
+            --dark-text: #263238;
+            --light-background-card: #FFFFFF;
+            --light-background-main: #F4F7F9;
+        }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: var(--light-background-main);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--primary-blue);
+        }
+
+        .card {
+            background-color: var(--light-background-card);
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+            padding: 1.5rem; /* p-6 */
+        }
+
+        .chart-container {
+            position: relative;
+            height: 20rem; /* h-80 */
+            width: 100%;
+            max-width: 32rem; /* max-w-lg */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Specific styles for chart elements */
+        canvas {
+            background-color: var(--light-background-card);
+            border-radius: 0.75rem;
+        }
+
+        .section-title {
+            border-bottom: 2px solid var(--supporting-light-blue);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .process-step {
+            background-color: var(--supporting-light-blue);
+            color: var(--dark-text);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .arrow-down {
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid var(--accent-grey);
+            margin: 0 auto 1rem auto;
+        }
+
+        .interview-card {
+            border-left: 4px solid var(--secondary-teal);
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-6 md:p-8">
+    <header class="text-center mb-12">
+        <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 leading-tight">우리 반 학생들이 생성형 AI를 사용하는 이유</h1>
+        <p class="text-lg text-gray-600 mb-2">미림마이스터고등학교 1학년 6반 1조 공동 조사 보고서</p>
+        <p class="text-md text-gray-500">작성일: 2025년 5월 26일</p>
+        <div class="flex flex-wrap justify-center gap-x-4 mt-4 text-gray-700 text-sm">
+            <span>김시은 (1603)</span>
+            <span>정서윤 (1613)</span>
+            <span>최예린 (1617)</span>
+            <span>황주한 (1618)</span>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto space-y-12">
+        <section id="motivation-purpose" class="card">
+            <h2 class="text-2xl font-bold mb-4 section-title">1. 조사 동기와 목적</h2>
+            <p class="text-gray-700 mb-4">
+                AI 개발 및 연구를 위해서는 우선 사용자가 어떤 목적으로 AI를 사용하는지 파악해야 한다. 이에 우리 반 학생들의 생성형 AI 사용 이유를 조사하게 되었다.
+            </p>
+            <p class="text-gray-700">
+                본 보고서의 목적은 AI와 관련된 일을 하는 사람이나 AI에 관심을 갖고 있는 사람들에게 사람들이 AI를 사용하는 이유를 제공하여, AI 개발이나 연구, 탐구 등을 돕는 것이다.
+            </p>
+        </section>
+
+        <section id="research-plan" class="card">
+            <h2 class="text-2xl font-bold mb-4 section-title">2. 조사 계획</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 text-secondary-teal">조사 개요</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2">
+                        <li><strong>기간:</strong> 2025년 5월 15일 ~ 5월 21일 (6일간)</li>
+                        <li><strong>방식:</strong> 구글폼을 이용한 설문조사 및 대면 인터뷰</li>
+                        <li><strong>대상:</strong> 미림마이스터고등학교 1학년 6반 학생 18명 (설문조사 전체, 인터뷰 2명 선정)</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 text-secondary-teal">조사 방법 및 질문</h3>
+                    <div class="space-y-4">
+                        <div class="bg-supporting-light-blue p-4 rounded-lg">
+                            <h4 class="font-bold text-lg mb-2">설문조사 (객관식)</h4>
+                            <ul class="list-disc list-inside text-gray-700">
+                                <li>Q1. 생성형 AI를 하루에 어느 정도 사용하나요?</li>
+                                <li>Q2. 평소에 인공지능(AI)을 사용하는 이유는 무엇인가요?</li>
+                                <li>Q3. 생성형 AI가 귀하의 목적에 얼마나 도움이 된다고 생각하나요?</li>
+                            </ul>
+                        </div>
+                        <div class="bg-supporting-light-blue p-4 rounded-lg">
+                            <h4 class="font-bold text-lg mb-2">대면 인터뷰 (자유 의견)</h4>
+                            <ul class="list-disc list-inside text-gray-700">
+                                <li>AI 외 다른 방법으로 비슷한 결과 가능 시, AI 선택 특별 이유?</li>
+                                <li>생성형 AI 사용 중 가장 좋았던 점? 어떤 문제 해결 도움?</li>
+                                <li>생성형 AI 사용 경험 중 가장 기억에 남는 상황?</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="research-results" class="card">
+            <h2 class="text-2xl font-bold mb-4 section-title">3. 조사 결과</h2>
+
+            <h3 class="text-xl font-semibold mb-6 text-primary-blue">3.1 설문조사 결과</h3>
+
+            <div class="mb-8">
+                <h4 class="text-lg font-bold mb-4">Q1. 생성형 AI(예: 챗GPT, Gemini 등)를 하루에 어느 정도 사용하나요?</h4>
+                <p class="text-gray-700 mb-4">
+                    1학년 6반 학생들 중에는 하루에 30분 이하로 생성형 AI를 활용한다고 답변한 친구들이 대다수였으며, 2시간보다 많이 생성형 AI를 활용하는 친구는 없었다. 이는 생성형 AI가 사람들에게 간단한 용도로 사용되고 있음을 보여준다.
+                </p>
+                <div class="chart-container">
+                    <canvas id="q1Chart"></canvas>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h4 class="text-lg font-bold mb-4">Q2. 평소에 인공지능(AI)을 사용하는 이유는 무엇인가요? (하나만 선택)</h4>
+                <p class="text-gray-700 mb-4">
+                    평소에 인공지능을 사용하는 이유는 시간과 노력을 절약할 수 있어서를 제외하고 과제나 학습 자료 찾기, 아이디어/창작 영감, 재미/새로운 경험 세 가지 이유가 모두 높은 편이었다. 이는 AI가 학습 도우미로 활용되는 동시에, 창의적인 활동이나 새로운 경험을 위한 도구로도 중요하게 여겨지고 있음을 보여준다.
+                </p>
+                <div class="chart-container">
+                    <canvas id="q2Chart"></canvas>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h4 class="text-lg font-bold mb-4">Q3. 생성형 AI가 귀하의 목적(예: 학습, 아이디어 얻기 등)에 얼마나 도움이 된다고 생각하나요?</h4>
+                <p class="text-gray-700 mb-4">
+                    대부분의 응답자가 생성형 AI가 목적 달성에 있어 실질적으로 유용하다고 인식하고 있음을 보여준다. 특히 부정적인 응답이 전혀 없다는 점에서 AI의 활용도에 대한 신뢰와 긍정적인 경험이 널리 퍼져 있음을 알 수 있다.
+                </p>
+                <div class="chart-container">
+                    <canvas id="q3Chart"></canvas>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-6 text-primary-blue mt-12">3.2 인터뷰 조사 결과</h3>
+            <p class="text-gray-700 mb-6">
+                1학년 6반 송지영 학생과 조세연 학생을 대상으로 생성형 AI 사용 경험에 대한 인터뷰를 진행했다.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="card interview-card p-4">
+                    <h4 class="font-bold text-lg mb-2 text-secondary-teal">송지영 학생</h4>
+                    <p class="text-gray-700">
+                        생성형 AI의 가장 큰 장점으로 정보를 빠르고 간편하게 얻을 수 있다는 점을 들었다. 궁금한 점이 생겼을 때 짧은 시간 안에 원하는 답을 찾을 수 있어 공부할 때나 일상생활에서 유용하게 활용하고 있다고 말했다. 특히 정리된 형태로 정보를 제공받을 수 있어 효율적이라는 점을 강조했다.
+                    </p>
+                </div>
+                <div class="card interview-card p-4">
+                    <h4 class="font-bold text-lg mb-2 text-secondary-teal">조세연 학생</h4>
+                    <p class="text-gray-700">
+                        AI가 다양한 관점으로 생각할 수 있도록 도와주는 점이 유익하다고 말했다. 과제를 하다 막히는 부분이 있을 때 방향을 잡는 데 도움이 되고, 아이디어를 정리하거나 내용을 요약하는 기능도 자주 사용한다고 했다. 다만, 때때로 틀린 정보를 제공하는 경우가 있어 무조건적으로 믿기보다는 스스로 한 번 더 확인하는 태도가 필요하다고 덧붙였다.
+                    </p>
+                </div>
+            </div>
+            <p class="text-gray-700 mt-6">
+                두 학생 모두 생성형 AI를 정보 탐색과 학습에 도움이 되는 도구로 인식하고 있었으며, 적절히 활용한다면 매우 유용한 수단이 될 수 있다는 데 공감했다.
+            </p>
+        </section>
+
+        <section id="conclusion-suggestions" class="card">
+            <h2 class="text-2xl font-bold mb-4 section-title">4. 결론 및 제언</h2>
+
+            <h3 class="text-xl font-semibold mb-6 text-primary-blue">4.1 조사 결과 종합 및 주요 발견점</h3>
+            <ul class="list-disc list-inside text-gray-700 space-y-2 mb-8">
+                <li>학생들은 생성형 AI를 주로 학습 자료 검색, 새로운 경험 추구, 아이디어 구상 등 다목적으로 활용하며 사용 시간을 짧고 집중적인 경향을 보였다.</li>
+                <li>학생들은 생성형 AI가 실제 목적 달성에 매우 유용하다고 인식하고 있으며, 특히 정보 검색의 신속성과 다양한 아이디어 제공 능력을 높이 평가했다.</li>
+                <li>생성형 AI가 제공하는 정보의 정확성에 대한 우려도 존재하며, 사용자 스스로 비판적인 검토 과정이 필요함을 인지하고 있었다.</li>
+            </ul>
+
+            <h3 class="text-xl font-semibold mb-6 text-primary-blue">4.2 조사를 통해 새롭게 알게 된 점 및 느낀 점</h3>
+            <ul class="list-disc list-inside text-gray-700 space-y-2 mb-8">
+                <li>학생들은 주로 재미나 정보 탐색을 위해 AI를 사용하는 것을 알게 되었다. 이는 학생들이 AI를 일상 속에서도 친숙하게 이용하고 있음을 보여준다.</li>
+                <li>학생 대다수가 생성형 AI의 유용성에 대해 매우 긍정적으로 평가하고 있다는 점은 주목할 만하며, 이는 AI 기술 수용도가 매우 높고 교육 현장에서의 적극적인 활용 가능성을 확인시켜 주었다.</li>
+                <li>긍정적 인식과 별개로, 학생들 스스로 AI 정보의 한계를 인지하고 비판적 검토의 필요성을 느끼고 있다는 점은, AI 리터러시 교육의 중요성과 수용성을 동시에 확인시켜 주는 중요한 발견이었다.</li>
+            </ul>
+
+            <h3 class="text-xl font-semibold mb-6 text-primary-blue">4.3 제언</h3>
+            <div class="space-y-6">
+                <div class="card p-4 bg-supporting-light-blue border-l-4 border-primary-blue">
+                    <h4 class="font-bold text-lg mb-2">1. 효과적이고 윤리적인 AI 활용 노력</h4>
+                    <p class="text-gray-700">
+                        생성형 AI를 효과적이고 윤리적으로 활용하기 위해 AI가 생성하는 정보의 특징과 한계를 스스로 학습하고 이해하려는 적극적인 노력이 필요하다. 예를 들어 AI가 제공하는 정보는 항상 최신이거나 맥락에 완벽히 부합하지 않을 수 있음을 인지하고, 다양한 AI 활용 윤리 가이드라인을 찾아보며 자신만의 건강한 AI 활용 원칙을 세우고 실천해야 한다.
+                    </p>
+                </div>
+                <div class="card p-4 bg-supporting-light-blue border-l-4 border-primary-blue">
+                    <h4 class="font-bold text-lg mb-2">2. AI를 능동적인 학습 및 창의적 파트너로 활용</h4>
+                    <p class="text-gray-700">
+                        단순한 정보 검색 도구로만 AI를 사용하는 것을 넘어 자신의 학습 목표와 창의적인 아이디어 발상을 위한 능동적인 파트너로 삼아 적극적으로 활용해 보기를 권장한다. 예를 들어 글쓰기나 코딩 과제 수행 시 AI에게 아이디어 구체화를 요청하거나 다양한 관점의 초안을 생성하도록 하여 이를 바탕으로 자신만의 결과물을 발전시키고 AI와 협력하여 새로운 콘텐츠를 제작해보는 경험을 통해 창의적 문제 해결 역량을 길러야 한다.
+                    </p>
+                </div>
+                <div class="card p-4 bg-supporting-light-blue border-l-4 border-primary-blue">
+                    <h4 class="font-bold text-lg mb-2">3. AI 정보의 비판적 검토 및 교차 확인 습관화</h4>
+                    <p class="text-gray-700">
+                        생성형 AI로부터 얻은 정보는 반드시 비판적으로 검토하고 교차 확인하는 습관을 생활화해야 한다. AI가 제시한 답변의 출처를 확인하거나, 최소 2개 이상의 다른 신뢰할 수 있는 정보원과 비교하여 사실 여부를 판단하고, 혹시 정보가 편향된 시각을 담고 있지는 않은지 스스로 질문하고 점검하는 과정을 거쳐야 한다.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="references" class="card">
+            <h2 class="text-2xl font-bold mb-4 section-title">5. 참고자료</h2>
+            <p class="text-gray-700">
+                본 보고서는 미림마이스터고등학교 1학년 6반 학생들을 대상으로 한 설문조사 및 대면 인터뷰 결과를 기반으로 작성되었다.
+            </p>
+        </section>
+    </main>
+
+    <footer class="text-center text-gray-500 text-sm mt-12 py-6 border-t border-gray-200">
+        <p>&copy; 2025 미림마이스터고등학교 1학년 6반 1조. 모든 권리 보유.</p>
+    </footer>
+
+    <script>
+        // Function to wrap long labels for Chart.js
+        function wrapLabel(label, maxCharsPerLine = 16) {
+            if (typeof label !== 'string') return label;
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+
+            words.forEach(word => {
+                if ((currentLine + word).length > maxCharsPerLine && currentLine.length > 0) {
+                    lines.push(currentLine.trim());
+                    currentLine = word + ' ';
+                } else {
+                    currentLine += word + ' ';
+                }
+            });
+            lines.push(currentLine.trim());
+            return lines;
+        }
+
+        // Custom tooltip for Chart.js
+        const customTooltip = {
+            callbacks: {
+                label: function(context) {
+                    let label = context.label || '';
+                    if (label) {
+                        label += ': ';
+                    }
+                    if (context.parsed !== null) {
+                        // For pie/doughnut charts, context.parsed is the value
+                        // For bar charts, context.parsed.y is the value
+                        const value = context.parsed.y !== undefined ? context.parsed.y : context.parsed;
+                        label += value + '명 (' + context.dataset.percentages[context.dataIndex] + '%)';
+                    }
+                    return label;
+                }
+            }
+        };
+
+        // Data for Q1 Chart
+        const q1Data = {
+            labels: ['30분 이하', '1시간', '1시간 30분', '2시간', '그 이상'],
+            counts: [11, 4, 2, 1, 0],
+            percentages: [61.1, 22.2, 11.1, 5.6, 0]
+        };
+
+        // Data for Q2 Chart
+        const q2Data = {
+            labels: [
+                '과제나 학습 자료를 찾는 데 도움이 돼서',
+                '아이디어를 얻거나 창작 활동에 영감을 얻기 위해서',
+                '시간과 노력을 절약할 수 있어서',
+                '재미있거나 새로운 경험을 할 수 있어서'
+            ],
+            counts: [6, 5, 1, 6],
+            percentages: [33.3, 27.8, 5.6, 33.3]
+        };
+
+        // Data for Q3 Chart
+        const q3Data = {
+            labels: ['전혀 도움이 되지 않는다', '도움이 되지 않는다', '보통이다', '도움이 된다', '매우 도움이 된다'],
+            counts: [0, 0, 0, 7, 11],
+            percentages: [0, 0, 0, 38.9, 61.1]
+        };
+
+        // Chart.js configuration for Q1 (Pie Chart)
+        const q1ChartCtx = document.getElementById('q1Chart').getContext('2d');
+        new Chart(q1ChartCtx, {
+            type: 'pie',
+            data: {
+                labels: q1Data.labels.map(label => wrapLabel(label, 10)), // Wrap labels for display
+                datasets: [{
+                    data: q1Data.counts,
+                    backgroundColor: [
+                        'var(--primary-blue)',
+                        'var(--secondary-teal)',
+                        'var(--supporting-light-blue)',
+                        'var(--accent-grey)',
+                        '#D3D3D3'
+                    ],
+                    borderColor: 'var(--light-background-card)',
+                    borderWidth: 2,
+                    percentages: q1Data.percentages // Custom property for tooltip
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            font: {
+                                family: 'Pretendard',
+                                size: 12
+                            },
+                            color: 'var(--dark-text)',
+                            // Use the wrapped labels from the data for the legend
+                            generateLabels: function(chart) {
+                                const data = chart.data;
+                                if (data.labels.length && data.datasets.length) {
+                                    return data.labels.map(function(label, i) {
+                                        const ds = chart.data.datasets[0];
+                                        const value = ds.data[i];
+                                        const percentage = ds.percentages[i];
+                                        return {
+                                            text: label + ' (' + percentage + '%)', // Display label with percentage in legend
+                                            fillStyle: ds.backgroundColor[i],
+                                            strokeStyle: ds.borderColor,
+                                            lineWidth: ds.borderWidth,
+                                            hidden: isNaN(value) || value === 0, // Hide if no data
+                                            index: i
+                                        };
+                                    });
+                                }
+                                return [];
+                            }
+                        }
+                    },
+                    tooltip: customTooltip
+                }
+            }
+        });
+
+        // Chart.js configuration for Q2 (Bar Chart)
+        const q2ChartCtx = document.getElementById('q2Chart').getContext('2d');
+        new Chart(q2ChartCtx, {
+            type: 'bar',
+            data: {
+                labels: q2Data.labels.map(label => wrapLabel(label, 16)), // Wrap labels for x-axis
+                datasets: [{
+                    label: '응답자 수',
+                    data: q2Data.counts,
+                    backgroundColor: 'var(--secondary-teal)',
+                    borderColor: 'var(--secondary-teal)',
+                    borderWidth: 1,
+                    percentages: q2Data.percentages // Custom property for tooltip
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false // Hide legend for single dataset bar chart
+                    },
+                    tooltip: customTooltip
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            font: {
+                                family: 'Pretendard',
+                                size: 12
+                            },
+                            color: 'var(--dark-text)',
+                            callback: function(value) { if (Number.isInteger(value)) { return value; } } // Only show integers
+                        },
+                        title: {
+                            display: true,
+                            text: '응답자 수 (명)',
+                            font: {
+                                family: 'Pretendard',
+                                size: 14,
+                                weight: 'bold'
+                            },
+                            color: 'var(--dark-text)'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                family: 'Pretendard',
+                                size: 12
+                            },
+                            color: 'var(--dark-text)'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Chart.js configuration for Q3 (Pie Chart)
+        const q3ChartCtx = document.getElementById('q3Chart').getContext('2d');
+        new Chart(q3ChartCtx, {
+            type: 'pie',
+            data: {
+                labels: q3Data.labels.map(label => wrapLabel(label, 10)), // Wrap labels for display
+                datasets: [{
+                    data: q3Data.counts,
+                    backgroundColor: [
+                        '#D3D3D3', // Gray for 0%
+                        '#B0C4DE', // Light steel blue for 0%
+                        '#87CEEB', // Sky blue for 0%
+                        'var(--supporting-light-blue)',
+                        'var(--primary-blue)'
+                    ],
+                    borderColor: 'var(--light-background-card)',
+                    borderWidth: 2,
+                    percentages: q3Data.percentages // Custom property for tooltip
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            font: {
+                                family: 'Pretendard',
+                                size: 12
+                            },
+                            color: 'var(--dark-text)',
+                            generateLabels: function(chart) {
+                                const data = chart.data;
+                                if (data.labels.length && data.datasets.length) {
+                                    return data.labels.map(function(label, i) {
+                                        const ds = chart.data.datasets[0];
+                                        const value = ds.data[i];
+                                        const percentage = ds.percentages[i];
+                                        return {
+                                            text: label + ' (' + percentage + '%)', // Display label with percentage in legend
+                                            fillStyle: ds.backgroundColor[i],
+                                            strokeStyle: ds.borderColor,
+                                            lineWidth: ds.borderWidth,
+                                            hidden: isNaN(value) || value === 0, // Hide if no data
+                                            index: i
+                                        };
+                                    });
+                                }
+                                return [];
+                            }
+                        }
+                    },
+                    tooltip: customTooltip
+                }
+            }
+        });
+    </script>
+    </body>
+</html>
